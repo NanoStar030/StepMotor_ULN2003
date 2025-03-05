@@ -4,9 +4,7 @@ StepMotor:: StepMotor(int int1, int int2, int int3, int int4){
     this->_p2 = int2;
     this->_p3 = int3;
     this->_p4 = int4;
-
 }
-// Half-step sequence
 
 void StepMotor:: Init() {
     pinMode(_p1, OUTPUT);
@@ -16,6 +14,8 @@ void StepMotor:: Init() {
 }
 
 void StepMotor:: Move(bool direction, int steps, int _delay){
+    // 以 28BYJ-48 為例，步進角度是 5.625度，馬達減速比是 1:64，
+    // 馬達旋轉一圈是 360 度，轉一圈共需要 360/(5.635/64) = 4096 步
     if(direction){
         for(int i=0; i<steps; i++){
             _step_positive();
